@@ -1,3 +1,4 @@
+//apply gaussian elimination to solve equiv
 #include <iostream>
 #include <iomanip>
 #include <cmath>
@@ -27,7 +28,7 @@ int main()
     write_matrix();
     // Gaussian Elimination
     int step[2] = {0,0};//the location of pivot element
-    int point[2] = {0,0};
+    int point[2] = {0,0};//actually a little of no use 
     for(int j=0;j<size;++j){
         //find non-zero element
         point[0] = find_nonzero_element(step);
@@ -88,6 +89,7 @@ void print_matrix(){
 }
 
 bool isignore(double num){
+    //ignore the number too small 
     if(abs(num) < epslion){
         return true;
     }
@@ -155,12 +157,6 @@ int get_rank(){
             if(isignore(matrix[i-1][col1])&&!isignore(matrix[i-1][col2])) return -1;
             else return i;
         }
-        /*
-        if(!matrix[i][col1]&&!matrix[i][col2]){
-            if(!matrix[i-1][col1]&&matrix[i-1][col2]) return -1;
-            else return i;
-        }
-        */
     }
     return size;
 }
@@ -183,7 +179,3 @@ int back_step(int rank){
     }
     return 0;
 }
-/*10 -1 2 0 6
--1 11 -1 3 25
-2 -1 10 -1 -11
-0 3 -1 8 15*/
