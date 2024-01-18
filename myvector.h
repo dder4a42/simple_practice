@@ -3,7 +3,7 @@
 
 #include<iostream>
 using namespace std;
-
+template<typename T> class Sqlist;
 template<typename U> ostream & operator<<(ostream & os, Sqlist<U> & a);
 
 template<typename T>
