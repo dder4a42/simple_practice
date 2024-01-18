@@ -4,6 +4,8 @@
 #include<iostream>
 using namespace std;
 
+template<typename U> ostream & operator<<(ostream & os, Sqlist<U> & a);
+
 template<typename T>
 class Sqlist{
     //storage datas of elements
@@ -17,8 +19,7 @@ class Sqlist{
     //double the capacity
     void expand();
 public:
-    template<typename U>
-    friend ostream & operator<<(ostream & os, Sqlist<U> & a);
+    friend ostream & operator<< <>(ostream & os, Sqlist<T> & a);
 
     Sqlist(int t = Sqlist::Default_capacity, T val = 0);
     Sqlist(const Sqlist& a);
@@ -133,8 +134,8 @@ int Sqlist<T>::remove(int index){
     return remove(index, index+1);
 }
 
-template<typename U>
-ostream &operator<<(ostream &os, Sqlist<U> &a){
+template<typename T>
+ostream &operator<<(ostream &os, Sqlist<T> &a){
     os << "[";
     for(int i=0;i<a.length;i++){
         os << a[i] << (i<a.length-1 ? ',' : ']');
